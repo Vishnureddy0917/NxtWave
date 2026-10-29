@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>NxtWave EvalAI — Automated AI Project Evaluation & Certification Engine</title>
+  <meta name="description" content="Automated AI Project Evaluation & Skill Certification Engine for NxtWave's 'Build Your First AI Project in 60 Minutes' Workshop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-badge">NxtWave</div>
+        <div class="brand-title">
+          <span class="gradient-text">EvalAI</span>
+          <span class="version-tag">Engine v2.4</span>
+        </div>
+      </div>
+      <div class="workshop-pill">
+        <span class="live-dot"></span>
+        <span>Workshop: Build Your First AI Project in 60 Mins</span>
+      </div>
+      <div class="header-actions">
+        <a href="#registerSection" class="btn btn-outline" id="navRegisterBtn">Reserve Seat (Free)</a>
+        <a href="#evaluatorSection" class="btn btn-primary" id="navTryBtn">Launch Evaluator</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="sparkle">✨</span>
+        <span>Solve the Placement Anxiety • Instant Verifiable AI Credential</span>
+      </div>
+      <h1 class="hero-heading">
+        Don’t Just Build an AI Project.<br>
+        <span class="gradient-text">Get It AI-Evaluated & Industry-Certified.</span>
+      </h1>
+      <p class="hero-subtext">
+        Generic resume projects get rejected by recruiters. In NxtWave’s 60-minute workshop, final-year engineering students build a production-ready AI application and get automated real-time code evaluation, ATS resume bullets, and a verifiable skill certificate.
+      </p>
+
+      <!-- Value Props Metric Bar -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value">60 Mins</div>
+          <div class="metric-label">To Working Deployed AI App</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">4 Engineering Rubrics</div>
+          <div class="metric-label">Architecture, Prompting, API & Security</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">1-Click ATS</div>
+          <div class="metric-label">Recruiter-Ready Resume Bullets</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">100% Free</div>
+          <div class="metric-label">Zero Prior ML Experience Required</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Grid: Evaluator & Interactive Workspace -->
+  <main class="container main-layout" id="evaluatorSection">
+    
+    <!-- Left Column: Code Submission & Evaluator Controls -->
+    <div class="column editor-column">
+      <div class="card glass-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="step-num">1</span>
+            <div>
+              <h2>Submit Your 60-Minute AI Project</h2>
+              <p class="text-muted">Select your engineering branch to test against industry placement benchmarks</p>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnLoadSample" title="Load sample student submission">
+            <span>⚡ Load Sample Code</span>
+          </button>
+        </div>
+
+        <!-- Student Meta Inputs -->
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" placeholder="e.g. Vishnu Vardhan" value="Vishnu Vardhan">
+          </div>
+          <div class="input-group">
+            <label for="studentCollege">College / Institute</label>
+            <select id="studentCollege">
+              <option value="SRM University AP">SRM University AP</option>
+              <option value="VIT-AP University">VIT-AP University</option>
+              <option value="KL University">KL University</option>
+              <option value="Vignan's University">Vignan's University</option>
+              <option value="JNTU Kakinada">JNTU Kakinada</option>
+              <option value="JNTU Hyderabad">JNTU Hyderabad</option>
+              <option value="GITAM Deemed University">GITAM Deemed University</option>
+              <option value="CBIT Hyderabad">CBIT Hyderabad</option>
+              <option value="Other Engineering College">Other Engineering College</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="studentBranch">Engineering Branch</label>
+            <select id="studentBranch">
+              <option value="CSE">CSE / IT / Data Science (AI Assistant & LLM Tooling)</option>
+              <option value="ECE">ECE / EEE (IoT Anomaly Detection & Edge AI)</option>
+              <option value="MECH">Mechanical / Auto (Predictive Maintenance AI)</option>
+              <option value="CIVIL">Civil / Infrastructure (Blueprint Document Extraction)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="projectType">Selected Workshop Project</label>
+            <select id="projectType">
+              <option value="resume_screener">AI Resume Screener & Recruiter Mock Interviewer</option>
+              <option value="edge_anomaly">IoT Sensor Stream Anomaly Detector with Gemini</option>
+              <option value="maintenance_bot">Factory Equipment Failure Prediction Chatbot</option>
+              <option value="doc_analyzer">Automated Construction Compliance Extractor</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Code Input Box -->
+        <div class="input-group editor-group">
+          <div class="editor-header">
+            <div class="editor-tabs">
+              <span class="editor-tab active">app.py / main.js</span>
+              <span class="editor-lang">Python 3.11 • Gemini 1.5 Flash</span>
+            </div>
+            <div class="editor-stats" id="codeStats">Line Count: 38 • Tokens: ~412</div>
+          </div>
+          <textarea id="codeEditor" class="code-area" spellcheck="false" placeholder="// Paste your 60-Minute AI Project code or GitHub gist here..."></textarea>
+        </div>
+
+        <!-- GitHub Repo / Live URL (Optional) -->
+        <div class="input-group">
+          <label for="githubUrl">GitHub Repository / Streamlit / Vercel URL (Optional)</label>
+          <input type="url" id="githubUrl" placeholder="https://github.com/vishnu/ai-resume-screener-60min" value="https://github.com/vishnu-growth/nxtwave-ai-screener">
+        </div>
+
+        <!-- Run Evaluation CTA -->
+        <div class="eval-actions">
+          <button class="btn btn-primary btn-lg" id="btnRunEval">
+            <span class="btn-icon">⚡</span>
+            <span>Run Automated AI Evaluation</span>
+          </button>
+          <div class="eval-status-indicator" id="evalStatus">
+            <span class="status-ready-dot"></span> Ready to evaluate
+          </div>
+        </div>
+
+        <!-- Live Scanning Animation Overlay (Hidden by default) -->
+        <div class="scanning-overlay" id="scanningOverlay" style="display: none;">
+          <div class="scanner-spinner"></div>
+          <div class="scanner-text-group">
+            <div class="scanner-step" id="scanStep1">🔍 Parsing syntax & AST architecture...</div>
+            <div class="scanner-step" id="scanStep2">🛡️ Auditing prompt injection resilience & rate limits...</div>
+            <div class="scanner-step" id="scanStep3">📊 Benchmarking against 500+ placement requirements...</div>
+            <div class="scanner-step" id="scanStep4">🏅 Compiling ATS bullets & skill certification...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Results, Scorecard, ATS Bullets & Certificate -->
+    <div class="column results-column">
+      
+      <!-- Evaluation Results Card -->
+      <div class="card glass-card" id="resultsCard">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="step-num step-success">2</span>
+            <div>
+              <h2>Evaluation Scorecard & Diagnostic</h2>
+              <p class="text-muted">Instant rubric scoring benchmarked against top tech recruiters</p>
+            </div>
+          </div>
+          <div class="badge-grade" id="badgeGrade">Grade: A+</div>
+        </div>
+
+        <!-- Overall Score Ring & Overview -->
+        <div class="score-banner">
+          <div class="score-ring-container">
+            <div class="score-ring">
+              <span class="score-number" id="overallScore">94</span>
+              <span class="score-denom">/100</span>
+            </div>
+            <div class="score-tag">Industry Ready</div>
+          </div>
+          <div class="score-summary">
+            <h3 id="scoreHeadline">Excellent Production-Grade Implementation</h3>
+            <p id="scoreComment">Your AI tool calling and prompt guardrails adhere to senior engineering best practices. Placement readiness is in the 95th percentile.</p>
+            <div class="tags-row" id="skillTags">
+              <span class="skill-tag">Gemini API</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">Structured Output</span>
+              <span class="skill-tag">Error Boundary</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rubric Breakdown (4 Pillars) -->
+        <div class="rubric-grid">
+          <div class="rubric-item">
+            <div class="rubric-header">
+              <span class="rubric-name">1. Prompt Engineering & Guardrails</span>
+              <span class="rubric-score" id="scoreRubric1">24/25</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="fillRubric1" style="width: 96%;"></div></div>
+            <div class="rubric-desc" id="descRubric1">Role definition, temperature control, and few-shot formatting are robust.</div>
+          </div>
+
+          <div class="rubric-item">
+            <div class="rubric-header">
+              <span class="rubric-name">2. API Integration & Tool Calling</span>
+              <span class="rubric-score" id="scoreRubric2">23/25</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="fillRubric2" style="width: 92%;"></div></div>
+            <div class="rubric-desc" id="descRubric2">Proper asynchronous execution with JSON schema response validation.</div>
+          </div>
+
+          <div class="rubric-item">
+            <div class="rubric-header">
+              <span class="rubric-name">3. Error Resilience & Rate Limits</span>
+              <span class="rubric-score" id="scoreRubric3">24/25</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="fillRubric3" style="width: 96%;"></div></div>
+            <div class="rubric-desc" id="descRubric3">Graceful exponential backoff fallback for API rate quota limits.</div>
+          </div>
+
+          <div class="rubric-item">
+            <div class="rubric-header">
+              <span class="rubric-name">4. Placement Relevance & Clean Code</span>
+              <span class="rubric-score" id="scoreRubric4">23/25</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="fillRubric4" style="width: 92%;"></div></div>
+            <div class="rubric-desc" id="descRubric4">Modularity, clear docstrings, and zero exposed plaintext API keys.</div>
+          </div>
+        </div>
+
+        <!-- Actionable AI Feedback & Improvement Suggestion -->
+        <div class="feedback-box">
+          <div class="feedback-title">
+            <span>💡</span> Pro Improvement from EvalAI:
+          </div>
+          <p id="feedbackSuggestion">
+            To make this project stand out even more in campus placement rounds, add response streaming (`generateContentStream`) to decrease Time-to-First-Token (TTFT) from 1.8s down to 320ms for users!
+          </p>
+        </div>
+
+        <!-- ATS Resume Bullet Generator -->
+        <div class="ats-box">
+          <div class="ats-header">
+            <div class="ats-title-group">
+              <span class="ats-icon">📄</span>
+              <div>
+                <h4>ATS-Optimized Resume Bullets (Ready to Paste)</h4>
+                <p class="text-muted">Pre-formatted for campus placement resume screening tools</p>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btnCopyAts">
+              <span id="copyAtsIcon">📋</span> Copy Bullets
+            </button>
+          </div>
+          <div class="ats-content" id="atsBulletsContent">
+• Architected and deployed an AI-driven Resume Screener using Gemini 1.5 Flash API, analyzing candidate profiles across 18 criteria with sub-second latency.
+• Integrated structured JSON output schemas and automated input sanitation to prevent prompt injection and improve evaluation repeatability by 94%.
+• Verified and industry-certified by NxtWave EvalAI with an overall engineering quality benchmark score of 94/100.
+          </div>
+        </div>
+
+        <!-- Verifiable Skill Certificate Preview -->
+        <div class="certificate-container" id="certificateBox">
+          <div class="cert-border">
+            <div class="cert-header">
+              <div class="cert-logo-group">
+                <span class="cert-logo-badge">NxtWave</span>
+                <span class="cert-subtext">Verified Skill Credential</span>
+              </div>
+              <div class="cert-id" id="certId">ID: NW-EVAL-2026-VISH-9402</div>
+            </div>
+
+            <div class="cert-body">
+              <div class="cert-title">CERTIFICATE OF APPLIED AI EXCELLENCE</div>
+              <p class="cert-awarded">This certifies that</p>
+              <h3 class="cert-name" id="certStudentName">Vishnu Vardhan</h3>
+              <p class="cert-text">
+                has successfully built, verified, and automated a 60-Minute Applied AI Project:
+              </p>
+              <div class="cert-project" id="certProjectName">AI Resume Screener & Recruiter Mock Interviewer</div>
+              <div class="cert-stats-row">
+                <div class="cert-stat">
+                  <span class="stat-lbl">Institution:</span>
+                  <span class="stat-val" id="certCollege">SRM University AP</span>
+                </div>
+                <div class="cert-stat">
+                  <span class="stat-lbl">Audit Score:</span>
+                  <span class="stat-val" id="certScoreDisplay">94 / 100 (Grade A+)</span>
+                </div>
+                <div class="cert-stat">
+                  <span class="stat-lbl">Audit Date:</span>
+                  <span class="stat-val" id="certDateDisplay">October 2026</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cert-footer">
+              <div class="cert-seal">
+                <div class="seal-circle">VERIFIED<br>AI SKILL</div>
+              </div>
+              <div class="cert-sign">
+                <div class="sign-line"></div>
+                <div class="sign-title">Academic & Industry Evaluation Board • NxtWave</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-actions">
+            <button class="btn btn-secondary btn-sm" id="btnPrintCert">
+              <span>🖨️</span> Save / Print Certificate
+            </button>
+            <button class="btn btn-whatsapp btn-sm" id="btnShareCertWa">
+              <span>📲</span> Share on WhatsApp (+ Challenge Peers)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Growth Loop: Workshop Registration & Viral Seeding Section -->
+  <section class="container register-section" id="registerSection">
+    <div class="card glass-card register-card">
+      <div class="register-header">
+        <div class="reg-badge">Limited Free Access • Final-Year Cohort</div>
+        <h2>Haven't Built Your AI Project Yet?</h2>
+        <p class="text-muted">Register for the free 60-minute workshop to build this project from scratch with senior industry mentors, get your code evaluated live on EvalAI, and claim your verified placement credential.</p>
+      </div>
+
+      <div class="reg-form-grid">
+        <div class="input-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Vishnu Vardhan" value="Vishnu Vardhan">
+        </div>
+        <div class="input-group">
+          <label for="regPhone">WhatsApp Mobile Number</label>
+          <input type="tel" id="regPhone" placeholder="9876543210" maxlength="10">
+        </div>
+        <div class="input-group">
+          <label for="regCollege">Your College</label>
+          <select id="regCollege">
+            <option value="SRM University AP">SRM University AP</option>
+            <option value="VIT-AP University">VIT-AP University</option>
+            <option value="KL University">KL University</option>
+            <option value="Vignan's University">Vignan's University</option>
+            <option value="JNTU Kakinada">JNTU Kakinada</option>
+            <option value="JNTU Hyderabad">JNTU Hyderabad</option>
+            <option value="GITAM Deemed University">GITAM Deemed University</option>
+            <option value="CBIT Hyderabad">CBIT Hyderabad</option>
+            <option value="Other Engineering College">Other Engineering College</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="regBranch">Engineering Branch</label>
+          <select id="regBranch">
+            <option value="CSE">CSE / IT</option>
+            <option value="ECE">ECE / EEE</option>
+            <option value="MECH">Mechanical</option>
+            <option value="CIVIL">Civil / Others</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="reg-cta-row">
+        <button class="btn btn-primary btn-lg" id="btnCompleteReg">
+          <span>🚀</span> Confirm Free Workshop Registration
+        </button>
+        <div class="guarantee-text">
+          🔒 100% Free • ₹0 Cost • Verified Certificate Included
+        </div>
+      </div>
+
+      <!-- Live Workshop Registration Progress Tracker (500 Goal) -->
+      <div class="growth-tracker-box">
+        <div class="tracker-header">
+          <div class="tracker-title">
+            <span class="fire-icon">🔥</span>
+            <span>Target: 500 Final-Year Registrations Across AP &amp; Telangana Campuses</span>
+          </div>
+          <div class="tracker-count" id="trackerCountDisplay">342 / 500 Seats Filled</div>
+        </div>
+        <div class="progress-track track-lg">
+          <div class="progress-fill fill-glow" id="regProgressFill" style="width: 68.4%;"></div>
+        </div>
+        <div class="milestones-row">
+          <span class="milestone reached">100 (Campus Clubs)</span>
+          <span class="milestone reached">250 (Class Reps)</span>
+          <span class="milestone active">500 (Full Cohort)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campus Leaderboard & Viral Share Section -->
+  <section class="container leaderboard-section">
+    <div class="grid-2">
+      <!-- College Battle Leaderboard -->
+      <div class="card glass-card">
+        <div class="card-header">
+          <div>
+            <h3>🏫 Inter-College Campus Battle</h3>
+            <p class="text-muted">Colleges with highest verified AI project submissions</p>
+          </div>
+          <span class="badge-mini">Live</span>
+        </div>
+        <div class="leaderboard-list" id="collegeLeaderboard">
+          <div class="lb-row">
+            <span class="lb-rank">1</span>
+            <span class="lb-name">SRM University AP</span>
+            <span class="lb-score">114 submissions</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">2</span>
+            <span class="lb-name">VIT-AP University</span>
+            <span class="lb-score">98 submissions</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">3</span>
+            <span class="lb-name">KL University</span>
+            <span class="lb-score">76 submissions</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">4</span>
+            <span class="lb-name">Vignan's University</span>
+            <span class="lb-score">54 submissions</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Growth Ambassador / WhatsApp Viral Sharing Hub -->
+      <div class="card glass-card">
+        <div class="card-header">
+          <div>
+            <h3>📢 Campus Ambassador &amp; Peer Share Hub</h3>
+            <p class="text-muted">Share with your college batchmate WhatsApp group</p>
+          </div>
+          <span class="badge-mini badge-accent">Viral Multiplier</span>
+        </div>
+        <div class="share-box">
+          <label>Pre-Drafted WhatsApp Message for College Groups:</label>
+          <div class="share-preview" id="sharePreviewText">
+🚀 Final-Year Batch Alert: Don't miss this free NxtWave workshop: "Build Your First AI Project in 60 Minutes". 
+
+Instead of basic theory, we actually build an AI app + get it evaluated by NxtWave EvalAI with an ATS-friendly resume bullet and verified skill certificate!
+
+Test your code & register for free here:
+https://nxtwave-evalai.vercel.app/?ref=VISHNU
+          </div>
+          <div class="share-actions">
+            <button class="btn btn-whatsapp" id="btnShareCampusWa">
+              <span>📲</span> Share to WhatsApp Class Group
+            </button>
+            <button class="btn btn-secondary" id="btnCopyShareText">
+              <span id="copyShareIcon">📋</span> Copy Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <strong>NxtWave Growth Challenge Submission</strong> • Candidate: <strong>Vishnu</strong>
+        <p class="text-muted">Working Asset: Automated AI Project Evaluation &amp; Certification Engine</p>
+      </div>
+      <div class="footer-right">
+        <a href="#evaluatorSection">Evaluator</a> •
+        <a href="#registerSection">Registration Funnel</a> •
+        <span class="badge-status">🟢 System Ready (100% Client-Side Executable)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
